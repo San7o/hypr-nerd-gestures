@@ -11,3 +11,13 @@ I use the [Hyprland](https://github.com/hyprwm/Hyprland) compositor on my daily 
 
 This project will use OpenCV and python3
 
+## Developement Environment
+
+I highly suggest using nix developement environment to have a consistant environment. You can enter the environment with
+```bash
+nix develop
+```
+
+If you don't have nix, you need to have installed the following programs / libraries:
+- python3
+- opencv-python
