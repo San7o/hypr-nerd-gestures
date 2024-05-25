@@ -18,6 +18,10 @@ I highly suggest using nix developement environment to have a consistant environ
 nix develop
 ```
 
-If you don't have nix, you need to have installed the following programs / libraries:
-- python3
-- opencv-python
+If you don't have nix, you need to have python3 installed. You can install the necessary libraries with the command (you may want to create a new python environment before using this):
+```
+pip install -r requirements.txt
+```
+
+Part of this project is based on [this](https://github.com/ishfulthinking/Python-Hand-Gesture-Recognition/tree/master) repo.
+
