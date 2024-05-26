@@ -3,6 +3,7 @@ import numpy as np
 
 from HandData import HandData
 from Config import Config
+from HandData import Waving
 
 # Here we take the current frame, the number of frames
 # elapsed, and how many fingers we've detected
@@ -19,8 +20,10 @@ def write_on_image(frame, conf):
     elif hand == None or hand.isInFrame == False:
         text = "No hand detected"
     else:
-        if hand.isWaving:
-            text = "Waving"
+        if hand.Waving is Waving.LEFT:
+            text = "Waving Left"
+        elif hand.Waving is Waving.RIGHT:
+            text = "Waving Right"
         elif hand.fingers == 0:
             text = "Rock"
         elif hand.fingers == 1:
@@ -123,14 +126,14 @@ def get_hand_data(thresholded_image, segmented_image, conf):
         hand.update(top, bottom, left, right)
     
     # Wait 8 frames
-    if conf.frames_elapsed % 8 == 0:
+    if conf.frames_elapsed % 6 == 0:
         hand.check_for_waving(centerX)
 
     # We count the number of fingers up every frame,
     # but only change hand.fingers if
     # 12 frames have passed, to prevent erratic gesture counts.
     hand.gestureList.append(count_fingers(thresholded_image, conf))
-    if conf.frames_elapsed % 12 == 0:
+    if conf.frames_elapsed % 8 == 0:
         hand.fingers = most_frequent(hand.gestureList)
         hand.gestureList.clear()
 
